@@ -1,16 +1,10 @@
-//1. 사용자가 이름을 입력하면
-//   user div에 welcome A!가 추가된다.
-//   inp의 placeholder를 변경한다.
-
-//2. 사용자가 이름을 입력하면 기억해야하기 때문에
-//   localStorage에 저장한다.
-
 let user = JSON.parse(localStorage.getItem('user'));
 
-let addUser = ev => {
+let login = ev => {
     if(ev.keyCode == 13){
         let user = {
-            name:inp.value
+            userId:userId.value,
+            password:password.value
         }
 
         localStorage.setItem('user', JSON.stringify(user));
@@ -18,13 +12,6 @@ let addUser = ev => {
     }
 }
 
-let findTodoAboutUser = todo => {
-    let userTodo = todo.filter(e => {
-        return e['user'].name == user.name
-    })[0];
-    
-    return userTodo;
-}
 
 let addTodo = ev => {
     if(ev.keyCode == 13){
@@ -77,15 +64,8 @@ let renderTodo = () => {
         console.dir(e);
         let icon = createElement('i', {prop:{className:'fa-solid fa-trash-can'}});
         let item = createElement('li', {prop:{className:'item'}, text:` ${e}`});
-        let line = createElement('i', {prop:{className:'fa-solid fa-trash-can'}});
 
         icon.addEventListener('click', ev => {
-            userTodo.items.splice(i,1);
-            localStorage.setItem('todo', JSON.stringify(todos));
-            renderTodo();
-        });
-
-        line.addEventListener('click', ev => {
             userTodo.items.splice(i,1);
             localStorage.setItem('todo', JSON.stringify(todos));
             renderTodo();
@@ -134,4 +114,3 @@ if(user){
 }
 
 renderTime();
-
