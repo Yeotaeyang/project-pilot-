@@ -1,13 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-
    <div class="container">
        <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
          <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
@@ -23,7 +13,7 @@
    		<c:if test="${empty sessionScope.auth}">
          <div class="col-md-3 text-end">
 
-              <a href="/member/login" class="btn btn-outline-primary me-2">Login</a>
+              <a href="/todo/login" class="btn btn-outline-primary me-2">Login</a>
               <a href="/member/signup" class="btn btn-primary">Sign-up</a>
 
          </div>
@@ -33,14 +23,10 @@
          <div class="col-md-3 text-end">
 
               <a class="btn btn-outline-primary me-2">${sessionScope.auth.userId }</a>
-              <a href="/member/logout class="btn btn-primary">Logout</a>
+              <a href="/member/logout"  class="btn btn-primary">Logout</a>
 
          </div>
          </c:if>
          
        </header>
    </div>
-
-
-</body>
-</html>

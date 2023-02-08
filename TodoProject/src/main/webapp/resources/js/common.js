@@ -1,4 +1,4 @@
-let $ = function(cssSelector, message){
+let new$ = function(cssSelector, message){
     let htmlElements = this.document.querySelectorAll(cssSelector);
 
     if(message){

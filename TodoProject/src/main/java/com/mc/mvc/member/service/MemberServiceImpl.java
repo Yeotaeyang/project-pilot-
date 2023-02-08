@@ -46,6 +46,7 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public void insertNewMember(SignUpForm form) {
 		form.setPassword(passwordEncoder.encode(form.getPassword()));
+		System.out.println(form);
 		memberRepository.insertMember(form);
 		
 	}
@@ -78,8 +79,8 @@ public class MemberServiceImpl implements MemberService{
 	public Member authenticateUser(Member rowMember) {
 		
 		Member member = memberRepository.selectMemberByUserId(rowMember.getUserId());
-		System.out.println(rowMember.getUserId() +" / "+ rowMember.getPassword());
-		System.out.println(member.getUserId() +" / "+ member.getPassword());
+//		System.out.println(rowMember.getUserId() +" / "+ rowMember.getPassword());
+//		System.out.println(member.getUserId() +" / "+ member.getPassword());
 		
 		if(member==null) return null;
 		System.out.println(!passwordEncoder.matches(rowMember.getPassword(), member.getPassword()));

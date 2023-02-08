@@ -8,3 +8,6 @@ create table member(
 );
 
 select * from member;
+
+delete from member;
+commit;

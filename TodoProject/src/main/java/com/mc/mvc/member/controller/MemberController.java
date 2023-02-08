@@ -113,13 +113,14 @@ public class MemberController {
 		// Email인증을 받은 후에 회원 가입을 시킬 것임
 //		memberService.insertNewMember(member);
 		
-		return "redirect:/index";
+		return "redirect:/todo/login";
 	}
 	
 	
 	
 	// @PathVariable : url에서 특정위치의 값을 컨트롤러의 매개변수에 바인드해준다.
 	// "/signupImpl/{authToken}" : /member/signImpl 로 시작하는 모든 요청을 대헤 메서드를 호출
+	//  메일에서 인증 토큰과 함께 받은 데이터를 저장시키는 코드 
 	@GetMapping("/signupImpl/{authToken}")
 	public String signup(HttpSession session,
 			@PathVariable String authToken,
@@ -139,7 +140,7 @@ public class MemberController {
 		// 세션에서 저장된 토큰을 삭제
 		session.removeAttribute("authToken");
 		
-		return "redirect:/index";
+		return "redirect:/todo/login";
 	}
 
 	
@@ -194,8 +195,9 @@ public class MemberController {
 	
 	@GetMapping("logout")
 	public String logout(HttpSession session) {
+		System.out.println(session.getAttribute("auth"));
 		session.removeAttribute("auth");
-		return "redirect:/index";
+		return "redirect:/todo/login";
 	}
 	
 	
