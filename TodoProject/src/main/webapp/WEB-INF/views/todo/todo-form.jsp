@@ -22,7 +22,6 @@
                 <div class="welcome"><span>Welcome!! ${sessionScope.auth.userId }</span></div>
                 <div class="time row"><span id="nowTime">14 : 05 : 00</span></div>
             </div>
-            
         </div>
     </div>
 
@@ -41,14 +40,11 @@
                     <div class="card-body">
                         <h4 class="card-title">Awesome Todo list</h4>
                         <form action="/todo/addTodo" method="get">
-                        <div class="add-items d-flex"> <input id="todo" type="text" name="todo" class="form-control todo-list-input" placeholder="What do you need to do today?"> <button id="btAdd" class="add btn btn-primary font-weight-bold todo-list-add-btn">Add</button> </div>
-                        <div class="list-wrapper">
+                     	   <div class="add-items d-flex"> <input id="todo" type="text" name="todo" class="form-control todo-list-input" placeholder="What do you need to do today?"> <button id="btAdd" class="add btn btn-primary font-weight-bold todo-list-add-btn">Add</button> </div>
+                 	       <div class="list-wrapper">
                             <ul class="d-flex flex-column-reverse todo-list" id="todoList"> </ul>
-                        </div>
-                        
-                        
+           	             </div>
                         </form>
-                        
                     </div>
                 </div>
             </div>
@@ -59,7 +55,6 @@
 	
 </section>
 	<%@ include file="/WEB-INF/views/include/footer.jsp"%>
-	`
 <script defer src="${context}/resources/js/todo/myTodo.js"></script>
 
 </body>

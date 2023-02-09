@@ -14,6 +14,7 @@ import com.mc.mvc.member.dto.Member;
 import com.mc.mvc.member.service.MemberService;
 import com.mc.mvc.member.validator.form.SignUpFormValidator;
 import com.mc.mvc.todo.dto.Todo;
+import com.mc.mvc.todo.dto.deleteTodo;
 import com.mc.mvc.todo.service.TodoService;
 
 import lombok.RequiredArgsConstructor;
@@ -32,7 +33,6 @@ public class todoController {
 	@GetMapping("/todo-form")
 	public void todo() {
 		System.out.println("todo-form으로 이동합니다");
-
 	}
 
 	@GetMapping("/login")
@@ -43,11 +43,11 @@ public class todoController {
 	@PostMapping("/login")
 	public String login(Member member, HttpSession session, RedirectAttributes redirectAttr) {
 		
-		System.out.println(member);
+//		System.out.println(member);
 		if(member.getUserId().equals("") | member.getPassword().equals("")) {
 			redirectAttr.addFlashAttribute("msg", "아이디나 비밀번호를 입력해주세요.");
 			return "redirect:/todo/login";
-		}
+		} 
 		
 		Member auth = memberService.authenticateUser(member);
 
@@ -63,14 +63,41 @@ public class todoController {
 	}
 	
 	@GetMapping("/addTodo")
-	public String addTodo(Todo todo,HttpSession session) {
-
+	public String addTodo(Todo todo,HttpSession session,RedirectAttributes redirectAttr) {
+		if(session.getAttribute("auth")==null) {
+			redirectAttr.addFlashAttribute("msg", "session이 만료되었습니다.");
+			System.out.println("auth = null");
+			return "redirect:/todo/login";
+		}
 		Member aa=(Member) session.getAttribute("auth");
 		String user = aa.getUserId();
 		todo.setUserId(user);
-		System.out.println(todo);
+//		System.out.println(todo);
 		todoService.insertNewTodo(todo);
 		System.out.println("Todo를 추가합니다.");
+		return "redirect:/todo/todo-form";
+	}
+	
+	
+	// 아직 미완
+	@PostMapping("/doneTodo")
+	public String dontTodo(Todo todo,HttpSession session) {
+		Member aa=(Member) session.getAttribute("auth");
+		String user = aa.getUserId();
+		todo.setUserId(user);
+		todoService.deleteTodo(todo);
+		return "redirect:/todo/todo-form";
+	}
+	
+	
+	@PostMapping("deleteTodo")
+	public String deleteTodo(Todo todo,HttpSession session) {
+		Member aa=(Member) session.getAttribute("auth");
+		String user = aa.getUserId();
+		todo.setUserId(user);
+//		System.out.println(todo);
+		System.out.println("삭제하자");
+		todoService.deleteTodo(todo);
 		return "redirect:/todo/todo-form";
 	}
 

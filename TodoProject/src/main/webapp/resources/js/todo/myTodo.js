@@ -60,13 +60,13 @@ let renderTodo = ()=>{
 let createItems = (todos)=>{
 
   todos.items.forEach((e,i)=>{
-      let item = createElement('li', {prop:{className:'item', innerText:`${e}`}});
+      let item = createElement('li', {prop:{className:'item', innerText:`${e}`,id:`${e}`}});
       let div = createElement('div',{prop:{className:'form-check'}})
       let label = createElement('label',{prop:{className:'form-check-label'}})
       let input = createElement('input',{prop:{className:'checkbox',type:'checkbox'}})
       let ihelper = createElement('i',{prop:{className:'input-helper'}})
-      let iremove = createElement('i',{prop:{className:'remove mdi mdi-close-circle-outline'}})
-     
+      let iremove = createElement('a',{prop:{className:'remove mdi mdi-close-circle-outline',}})
+      iremove.href="#";     
       
       item.prepend(div);
       div.prepend(label);
@@ -78,14 +78,18 @@ let createItems = (todos)=>{
         else item.className='item';
 
       })
-
+      
+      console.dir(iremove.parentElement.innerText);
       iremove.addEventListener('click',ev=>{
+        console.dir(iremove.parentElement.innerText);
+        dataToATagWithPost('/todo/deleteTodo',iremove.parentElement.innerText);
         todos.items.splice(i,1);
         let todo = [{items:todos.items}];
         localStorage.setItem('todo', JSON.stringify(todo));
         renderTodo();
        
       })
+      
 
       $('.todo-list').append(item);
   })

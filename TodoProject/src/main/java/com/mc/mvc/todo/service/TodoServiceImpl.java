@@ -18,6 +18,12 @@ public class TodoServiceImpl implements TodoService{
 		todoRepository.insertNewTodo(todo);
 		
 	}
+
+	@Override
+	public void deleteTodo(Todo todo) {
+		todoRepository.deleteTodo(todo);
+		
+	}
 	
 	
 }

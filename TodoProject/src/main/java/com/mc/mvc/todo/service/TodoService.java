@@ -6,4 +6,6 @@ public interface TodoService {
 
 	void insertNewTodo(Todo todo);
 
+	void deleteTodo(Todo todo);
+
 }

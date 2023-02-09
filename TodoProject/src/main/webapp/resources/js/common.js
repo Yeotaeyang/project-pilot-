@@ -70,3 +70,19 @@ let findFromSessionStorage = key => {
 let setToSessionStorage = (key,data) => {
     sessionStorage.setItem(key, JSON.stringify(data));
 }
+
+let dataToATagWithPost = (url,data)=>{
+    let form = createElement('form', {});
+    console.dir("deleteTodo");
+    form.action = url;
+    form.method='post';
+    let input = document.createElement("input");
+    input.setAttribute("type","hidden");
+    input.setAttribute('name', "todo");
+    input.setAttribute('id', "todo");
+    input.setAttribute("value", data);
+    form.appendChild(input);
+    document.body.appendChild(form);
+    form.submit();
+
+}
