@@ -23,7 +23,7 @@
           <div class="card">
             <div class="card-body py-5 px-md-5">
               <form  action="/todo/login" method="post">
-                <!-- Email input -->
+                <!-- userId input -->
                 <div class="form-outline mb-4">
                   <input type="userId" id="userId" name ="userId"class="form-control" />
                   <label class="form-label" for="form3Example3">UserId</label>

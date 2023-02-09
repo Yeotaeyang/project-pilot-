@@ -13,6 +13,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.mc.mvc.member.dto.Member;
 import com.mc.mvc.member.service.MemberService;
 import com.mc.mvc.member.validator.form.SignUpFormValidator;
+import com.mc.mvc.todo.dto.Todo;
+import com.mc.mvc.todo.service.TodoService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -23,6 +25,7 @@ public class todoController {
 	
 	private final MemberService memberService;
 	private final SignUpFormValidator signUpFormValidator;
+	private final TodoService todoService;
 	
 	Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -58,5 +61,20 @@ public class todoController {
 
 		return "redirect:/todo/todo-form";
 	}
+	
+	@GetMapping("/addTodo")
+	public String addTodo(Todo todo,HttpSession session) {
 
+		Member aa=(Member) session.getAttribute("auth");
+		String user = aa.getUserId();
+		todo.setUserId(user);
+		System.out.println(todo);
+		todoService.insertNewTodo(todo);
+		System.out.println("Todo를 추가합니다.");
+		return "redirect:/todo/todo-form";
+	}
+
+	
+	
+	
 }

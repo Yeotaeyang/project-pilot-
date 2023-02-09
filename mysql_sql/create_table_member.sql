@@ -7,7 +7,14 @@ create table member(
     IS_LEAVE CHAR(1) NOT NULL DEFAULT 'N' COMMENT '탈퇴여부'
 );
 
+create table todo(
+    USER_ID VARCHAR(36) NOT NULL PRIMARY KEY COMMENT'회원아이디',
+    TODO VARCHAR(70) NOT NULL COMMENT 'todo',
+    DONE char(1) not null default 'N' comment '끝마쳤는지'
+);
+
 select * from member;
+select * from todo;
 
 delete from member;
 commit;

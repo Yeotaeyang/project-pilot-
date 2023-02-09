@@ -77,15 +77,8 @@ let renderTodo = () => {
         console.dir(e);
         let icon = createElement('i', {prop:{className:'fa-solid fa-trash-can'}});
         let item = createElement('li', {prop:{className:'item'}, text:` ${e}`});
-        let line = createElement('i', {prop:{className:'fa-solid fa-trash-can'}});
 
         icon.addEventListener('click', ev => {
-            userTodo.items.splice(i,1);
-            localStorage.setItem('todo', JSON.stringify(todos));
-            renderTodo();
-        });
-
-        line.addEventListener('click', ev => {
             userTodo.items.splice(i,1);
             localStorage.setItem('todo', JSON.stringify(todos));
             renderTodo();
