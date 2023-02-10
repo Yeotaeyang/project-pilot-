@@ -63,6 +63,14 @@
           </thead>
           <tbody id="calendar-body" class="calendar-body"></tbody>
         </table>
+        <%-- 날짜 정보 넘기기 --%>
+        <form action="/todo/calendarTodo" method="post">
+          userId: <input type="text" name="userId" />
+          regDate: <input type="text" name="regDate" />
+          <button type="submit">전송</button>
+        </form>
+
+
       </div>
     </div>
   </div>

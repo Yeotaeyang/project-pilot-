@@ -59,11 +59,11 @@ public class todoController {
 		return "redirect:/todo/todo-form";
 	}
 	
-	@GetMapping("/calendar")
-	public void calendar() {
-		System.out.println("calendar으로 이동합니다.");
-	}
-
-	
+//	@GetMapping("/calendar")
+//	public void calendar() {
+//		System.out.println("calendar으로 이동합니다.");
+//	}
+//
+//
 
 }
