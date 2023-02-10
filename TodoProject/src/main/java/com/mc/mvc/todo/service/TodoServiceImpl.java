@@ -21,7 +21,7 @@ public class TodoServiceImpl implements TodoService{
 
 	@Override
 	public void deleteTodo(Todo todo) {
-		todoRepository.deleteTodo(todo);
+		System.out.println(todoRepository.deleteTodo(todo));
 		
 	}
 	

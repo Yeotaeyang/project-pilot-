@@ -7,7 +7,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mc.mvc.member.dto.Member;
@@ -62,8 +64,9 @@ public class todoController {
 		return "redirect:/todo/todo-form";
 	}
 	
-	@GetMapping("/addTodo")
-	public String addTodo(Todo todo,HttpSession session,RedirectAttributes redirectAttr) {
+	@PostMapping("/addTodo")
+	@ResponseBody
+	public String addTodo(@RequestBody Todo todo,HttpSession session,RedirectAttributes redirectAttr) {
 		if(session.getAttribute("auth")==null) {
 			redirectAttr.addFlashAttribute("msg", "session이 만료되었습니다.");
 			System.out.println("auth = null");
@@ -72,16 +75,18 @@ public class todoController {
 		Member aa=(Member) session.getAttribute("auth");
 		String user = aa.getUserId();
 		todo.setUserId(user);
-//		System.out.println(todo);
+		System.out.println(todo);
 		todoService.insertNewTodo(todo);
 		System.out.println("Todo를 추가합니다.");
-		return "redirect:/todo/todo-form";
+		return "";
 	}
 	
 	
 	// 아직 미완
 	@PostMapping("/doneTodo")
+//	@ResponseBody
 	public String dontTodo(Todo todo,HttpSession session) {
+		System.out.println(todo);
 		Member aa=(Member) session.getAttribute("auth");
 		String user = aa.getUserId();
 		todo.setUserId(user);
@@ -90,16 +95,21 @@ public class todoController {
 	}
 	
 	
+	
+	//@RequestBody -> mail핸들러에 있음/ json로 들어온 데이터는 자바 객체에 매핑하는 어노테이션
+	
 	@PostMapping("deleteTodo")
-	public String deleteTodo(Todo todo,HttpSession session) {
+	@ResponseBody
+	public void deleteTodo(@RequestBody Todo todo,HttpSession session) {
 		Member aa=(Member) session.getAttribute("auth");
 		String user = aa.getUserId();
 		todo.setUserId(user);
 //		System.out.println(todo);
 		System.out.println("삭제하자");
 		todoService.deleteTodo(todo);
-		return "redirect:/todo/todo-form";
+		
 	}
+	
 
 	
 	

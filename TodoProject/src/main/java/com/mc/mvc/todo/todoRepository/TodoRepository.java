@@ -15,7 +15,7 @@ public interface TodoRepository {
 
 	
 	@Delete("delete from todo where user_id=#{userId} and todo=#{todo}")
-	void deleteTodo(Todo todo);
+	boolean deleteTodo(Todo todo);
 	
 	
 
